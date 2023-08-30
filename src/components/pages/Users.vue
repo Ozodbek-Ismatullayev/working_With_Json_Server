@@ -14,6 +14,7 @@
                 <option value="" selected hidden>Select your department...</option>
                 <option value="IT">IT</option>
                 <option value="Marketolog">Marketolog</option>
+                <option value="Accountent">Accountent</option>
                 <option value="Logist">Logist</option>
               </select>
           </form>
@@ -28,6 +29,7 @@
 import axios from 'axios';
 import { ref, watch } from 'vue';
 import appModal from '../../ui/app-modal.vue';
+import Notification from '@/plugins/Notification';
 
 const dialog = ref(false)
 
@@ -55,12 +57,26 @@ watch(dialog, (value)=>{
 const save =(e)=>{
   e.preventDefault();
   if(!form.value.id){
-    axios.post("http://localhost:3000/Users", {...form.value})
+    axios.post("http://localhost:3000/Users", {...form.value}).then(res=>{
+      if(res.status === 201){
+        dialog.value = false
+        Notification({text: "User has been added"}, {type: "success"})
+        setTimeout(() => {
+          window.location.reload()
+        }, 2000);
+      }
+    })
   } else{
-    axios.put(`http://localhost:3000/Users/${form.value.id}`, {...form.value})
+    axios.put(`http://localhost:3000/Users/${form.value.id}`, {...form.value}).then(res=>{
+      if(res.status === 200){
+        dialog.value = false
+        Notification({text: "User has been edited"}, {type: "success"})
+        setTimeout(() => {
+          window.location.reload()
+        }, 2000);
+      }
+    })
   }
-  window.location.reload();
-  dialog.value = false
 }
 
 

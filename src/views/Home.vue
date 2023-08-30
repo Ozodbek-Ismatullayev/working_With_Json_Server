@@ -49,6 +49,8 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import Users from '../components/pages/Users.vue'
+import Notification from '../plugins/Notification'
+
 const user_modal = ref("")
 const users =  ref([])
 
@@ -60,7 +62,14 @@ const editModal =(item)=>{
   user_modal.value.openModal(item)
 }
 const deleteUser =(id)=>{
-  axios.delete(`http://localhost:3000/Users/${id}`)
+  axios.delete(`http://localhost:3000/Users/${id}`).then(res=>{
+    if(res.status === 200){
+      Notification({text: "User has been deleted"}, {type: "success"})
+        setTimeout(() => {
+          window.location.reload()
+        }, 2000);
+    }
+  })
   window.location.reload();
 }
 
