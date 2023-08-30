@@ -1,0 +1,31 @@
+{
+  "Users": [
+    {
+      "id": 2,
+      "name": "Vahobiddin",
+      "lastName": "Boboqulov",
+      "age": 21,
+      "address": "Muzrabot",
+      "phone": "+998945143389",
+      "department": "Logist"
+    },
+    {
+      "id": 3,
+      "name": "Dilshod",
+      "lastName": "O'ralov",
+      "age": 17,
+      "address": "Denov",
+      "phone": "+998975641287",
+      "department": "Marketolog"
+    },
+    {
+      "name": "Ozodbek",
+      "lastName": "Ismatullayev",
+      "age": 21,
+      "address": "Surxondaryo",
+      "phone": "+998930780232",
+      "department": "IT",
+      "id": 4
+    }
+  ]
+}
